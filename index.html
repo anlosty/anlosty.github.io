@@ -3,8 +3,80 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Anlosty charts</title>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js"></script>
+	<style>
+		.chart {
+			position: relative;
+			height: 200px;
+			border-left: 1px solid black;
+			margin-left: 80px;
+
+		}
+
+		.date {
+			position: absolute;
+			left: -20px;
+			width: 20px;
+			border-bottom: 1px solid black;
+			text-indent: -20px;
+		}
+
+		.pic {
+			height: 180px;
+		}
+
+		.title {
+			font-family: Helvetica;
+			font-size: 16px;
+			margin-left: 20px;
+
+		}
+	</style>
 </head>
 <body>
 	<h1>100 simple charts</h1>
+	<script>
+		var dataset = [ 
+			{date:"09.14", title:"First one"},
+			{date:"09.15", title:"Second one"},
+			{date:"09.16", title:"Third one"}, 
+			{date:"09.17", title:"Fourth one"},
+			{date:"09.18", title:"Fifth one"}
+		];
+
+			dataset.reverse();
+
+            var container = d3.select("body")
+                .append("div")
+                .classed("container", true);
+                
+                
+			var charts = container.selectAll("div.chart")
+                .data(dataset)
+                .enter()
+                .append("div")
+                .classed("chart", true);
+
+            charts.append("div")
+                .classed("date", true)
+                .text(function (d) {
+                	return d.date;
+                });
+
+            charts.append("div")
+                .classed("title", true)
+                .text(function (d) {
+                	return d.title;
+                });
+			
+			charts.append("img")
+				.classed("pic", true)
+				.attr("src", "http://images5.fanpop.com/image/photos/25600000/Hello-Kitty-Sitting-hello-kitty-25604546-1210-1429.jpg");
+
+
+        
+
+
+	</script>
 </body>
 </html>
